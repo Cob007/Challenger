@@ -20,8 +20,7 @@ const LandingPage = () => {
       id: 3, 
       title: "Win",
       type: "image"
-    },
-  ]
+    }]
   const [count, setCounter] = useState(1)
   const [screen, setScreen] = useState(screens[0])
   const [style,  setStyle] = useState('')
@@ -31,13 +30,10 @@ const LandingPage = () => {
       let screenDisplay = {}
       if (count == 3){
         screenDisplay = screens[0]
-        console.log(screenDisplay)
         setStyle('img0')
         setCounter((prev) => 1)
       } else {
         screenDisplay = screens[count]
-        console.log(screenDisplay)
-        console.log('img'+count)
         setStyle('img'+count)
         setCounter((prev) => prev+1)
       }
@@ -48,7 +44,6 @@ const LandingPage = () => {
   useEffect(()=>{
     loadCounter()
   },[count])
-
 
 
   return (
