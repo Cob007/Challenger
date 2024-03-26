@@ -5,6 +5,7 @@ const Auth = () => {
   return (
     <Routes>
         <Route path="/" element={<LandingPage/>}/>
+        
     </Routes>
   )
 };
