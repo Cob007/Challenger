@@ -3,9 +3,7 @@
 @use "./styles/partials/typograpgy" as * ;
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  margin: -10px;
   padding: 0;
-  text-align: center;  font-family: "ViaodaLibre", "Avenir", serif, sans-serif;
-
+  font-family: "ViaodaLibre";
 }
