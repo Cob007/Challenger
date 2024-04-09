@@ -1,0 +1,19 @@
+{
+    "id":1,
+    "firstname":"",
+    "lastname":"",
+    "username":"", 
+    "email":"",
+    "wins": [
+        {
+            "challengeId":1,
+            "title":"",
+            "details":{
+                "imageurl": "", 
+                "text": "", 
+                "videourl": ""
+            },
+            "count":200
+        }
+    ]
+}
