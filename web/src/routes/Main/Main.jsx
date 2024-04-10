@@ -8,10 +8,12 @@ import { Route, Routes } from "react-router-dom";
 
 
 const Main = () => {
-  return (
+  return (<>
+  
     <Routes>
       <Route path="/" element={<Rewards />} />
     </Routes>
+    </>
   );
 };
 
