@@ -1,8 +1,4 @@
-@font-face {
-    font-family: "ViaodaLibre";
-    src:
-        url("../../assets/fonts/ViaodaLibre-Regular.ttf") format("ttf");
-}
+
 
 @font-face {
     font-family: "Avenir";
@@ -25,4 +21,11 @@
         url("../../assets/fonts/AvenirNextLTPro-Demi.otf") format("otf"),
         url("../../assets/fonts/AvenirNextLTProDemi.ttf") format("ttf");
     font-weight: 500;
+}
+
+
+@font-face {
+    font-family: "ViaodaLibre";
+    src:
+        url("../../assets/fonts/ViaodaLibre-Regular.ttf") format("ttf");
 }
