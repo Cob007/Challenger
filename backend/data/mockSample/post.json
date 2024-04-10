@@ -1,0 +1,21 @@
+{
+    "id": 1,
+    "type":"text|image|video",
+    "details": {
+        "imageurl": "", 
+        "text": "", 
+        "videourl": ""
+    },
+    "challengeId":1,
+    "createdby":"Name of Challenge",
+    "createdAt":"Name of Challenge",
+    "updateAt":"Name of Challenge",
+    "count": 0,
+    "reward":{
+
+    },
+    "owner":{
+        "id":1, 
+        "username":"username"
+    }
+}
