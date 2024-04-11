@@ -1,0 +1,21 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $secondary-color-gray;
+  border-radius: 12px;
+  background: white;
+  margin: 14px 4px;
+  height: 350px;
+
+  filter: drop-shadow(0 0 0.35rem rgb(223, 223, 223));
+
+  &__image {
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0 ;
+  }
+}
