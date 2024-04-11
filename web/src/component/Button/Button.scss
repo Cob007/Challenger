@@ -11,6 +11,8 @@
   box-sizing: border-box;
   border-radius: 12px;
   background: $primary-color-penn-red;
+  @include btn;
+
 
   &__text {
     font-size: 1rem;

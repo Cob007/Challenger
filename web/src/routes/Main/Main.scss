@@ -1,0 +1,24 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.app {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    box-sizing: border-box;
+    background: $primary-color-smoky-black;
+    &__drawer{
+        @include tablet {
+            width: 20%;
+        }
+    }
+
+    &__body{
+        @include tablet {
+            width: 80%;
+        }
+    }
+    
+
+}

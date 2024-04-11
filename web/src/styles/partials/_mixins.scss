@@ -1,5 +1,10 @@
 @use './variable' as *;
 
+@mixin btn {
+    user-select: none;
+    cursor: pointer;
+}
+
 @mixin mobile {
     @media  screen and (min-width: $bp-mobile) {
         @content;    
