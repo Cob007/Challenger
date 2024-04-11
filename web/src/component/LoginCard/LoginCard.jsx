@@ -49,6 +49,11 @@ const LoginCard = (props) => {
           </span>
         </p>
       </div>
+      <div className="logincard__div-input">
+        <p className="logincard__p logincard__tc ">
+          Terms and conditions
+        </p>
+      </div>
     </main>
   );
 };
