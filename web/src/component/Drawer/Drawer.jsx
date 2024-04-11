@@ -33,7 +33,7 @@ const Drawer = (props) => {
       <section>
       <div className="drawer__logout">
         <img className="drawer__icon" src={LogoutIcon} alt="setting Icon" />
-        <p className="drawer__name--logout">Logout</p>
+        <p className="drawer__logout-text">Logout</p>
       </div>
       </section>
     </section>

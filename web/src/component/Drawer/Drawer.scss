@@ -14,16 +14,25 @@
 
     &__cont-logo {
         margin: 48px 0; 
+        
+        
     }
 
     &__logo {
         width: 100%;
+        @include tablet {
+            content: url('../../assets/logo/logo_icon.svg');
+        }
+        @include desktop {
+            content: url('../../assets/logo/logo_colored.svg');
+        }
     }
 
     &__ele-c {
+        width: 100%;
         display: flex;
         flex-direction: row;
-        background-color: hsla(1, 100%, 29%, 0.098);
+        background-color: #94020019;
         border-radius: 24px;
         align-items: center;
         margin: 12px 0;
@@ -32,32 +41,29 @@
         &:hover {
             background-color: #960200;
         }
+
+        @include tablet {
+            justify-content: center;
+        }
     }
 
     &__icon {
         width: 40px;
         height: 40px;
-        margin: 0 8px;
-    }
+        padding:  4px;
 
-    &__name {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        font-size: 1rem;
-        align-items: center;
-        color: $primary-color-smoky-black;
-        &:hover {
-            color: $primary-color-snow;
-        }
+        @include desktop {
+            margin: 0 8px;
 
-        &--logout {
-            color: white;
         }
     }
+
+    
 
     &__logout {
-        width: 15vh;
+
+        
+        width: 5vh;
         display: flex;
         position: absolute;
         flex-direction: row;
@@ -73,7 +79,53 @@
         &:hover {
             background-color: #960200;
         }
+
+        @include desktop{
+            width: 15vh;
+
+        }
     }
 
+    &__name {
+        display: none;
+
+        @include desktop {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            font-size: 1rem;
+            align-items: center;
+            color: $primary-color-smoky-black;
+            &:hover {
+                color: $primary-color-snow;
+            }
+    
+            &--logout {
+                color: white;
+            }
+        }
+        
+    }
+
+    &__logout-text {
+        display: none;
+
+        @include desktop {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            font-size: 1rem;
+            align-items: center;
+            color: $primary-color-smoky-black;
+            &:hover {
+                color: $primary-color-snow;
+            }
+    
+            &--logout {
+                color: white;
+            }
+        }
+        
+    }
 
 }
