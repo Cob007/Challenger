@@ -7,7 +7,7 @@
     flex-direction: row;
     height: 100vh;
     box-sizing: border-box;
-    background: $primary-color-smoky-black;
+    background: $secondary-color-gray ;
     &__drawer{
         @include tablet {
             width: 20%;
@@ -16,7 +16,9 @@
 
     &__body{
         @include tablet {
+            display: flex;
             width: 80%;
+            justify-content: center;
         }
     }
     

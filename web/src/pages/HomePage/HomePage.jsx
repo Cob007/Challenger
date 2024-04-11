@@ -1,9 +1,11 @@
+import Searchbar from '../../component/SearchBar/SearchBar';
 import './HomePage.scss'
 const HomePage = () => {
 
     return (
-        <main>
-            
+        <main className='homepage'>
+            <Searchbar />
+
         </main>
     )
 }

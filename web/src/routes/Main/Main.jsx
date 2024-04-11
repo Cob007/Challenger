@@ -2,6 +2,7 @@ import Drawer from "../../component/Drawer/Drawer";
 import Rewards from "../../component/Rewards/Rewards";
 import { Route, Routes } from "react-router-dom";
 import "./Main.scss";
+import HomePage from "../../pages/HomePage/HomePage";
 
 /***
  * I will the side component here
@@ -16,7 +17,7 @@ const Main = () => {
       </div>
       <div className="app__body">
         <Routes>
-          <Route path="/" element={<Rewards />} />
+          <Route path="/" element={<HomePage />} />
 
           <Route path="/awards" element={<Rewards />} />
           <Route path="/profile" element={<Rewards />} />
