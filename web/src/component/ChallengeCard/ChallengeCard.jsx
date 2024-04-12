@@ -1,12 +1,13 @@
 import "./ChallengeCard.scss";
 import PhotoOfThDay from "../../assets/images/photo2.avif";
-import Button from "../Button/Button";
 
 const ChallengeCard = (props) => {
-  const { challenge } = props;
+  const { challenge, handleChallengeClicked} = props;
 
   return (
-    <section className="card">
+    <section onClick={()=>{
+        handleChallengeClicked(challenge?.id||1)
+    }} className="card">
       <div className="card__img-bk">
         <img
           className="card__img"
