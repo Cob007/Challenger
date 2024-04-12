@@ -1,14 +1,20 @@
-import './FloatingActionButton.scss'
-import AddIcon from '../../assets/svg/add.svg';
+import "./FloatingActionButton.scss";
+import AddIcon from "../../assets/svg/add.svg";
+import { useNavigate } from "react-router-dom";
 
-const FloatingActionButton = () => {
+const FloatingActionButton = (props) => {
+  const { routes } = props;
+  const navigate = useNavigate();
 
-    return (
-        <div className='fab'>
-            <img className='fab__icon' src={AddIcon} alt="Floating action button"
-              />
-        </div>
-    )
-}
+  const handleClick = () => {
+    navigate(routes);
+  };
+
+  return (
+    <div onClick={handleClick} className="fab">
+      <img className="fab__icon" src={AddIcon} alt="Floating action button" />
+    </div>
+  );
+};
 
 export default FloatingActionButton;
