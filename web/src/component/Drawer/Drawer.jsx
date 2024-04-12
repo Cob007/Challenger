@@ -5,36 +5,60 @@ import SettingIcon from "../../assets/svg/settings.svg";
 import LogoutIcon from "../../assets/svg/logout.svg";
 import "./Drawer.scss";
 import Logo from "../../assets/logo/logo_colored.svg";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Drawer = (props) => {
+  const navigate = useNavigate();
+  const [clicked, setClicked] = useState('HOME')
+  const handeDrawerItemClicked = (value) => {
+    setClicked(value)
+    switch (value) {
+      case "HOME":
+        navigate("/app");
+        break;
+      case "REWARD":
+        navigate("/app/awards");
+        break;
+      case "PROFILE":
+        navigate("/app/profile");
+        break;
+      case "SETTINGS":
+        navigate("/app/settings");
+        break;
+      default:
+        navigate("/");
+    }
+  };
+
   return (
     <section className="drawer">
-      <article className="drawer__cont-logo">
+      <article onClick={()=>{handeDrawerItemClicked('HOME')}} className="drawer__cont-logo">
         <img className="drawer__logo" src={Logo} alt="App logo" />
       </article>
 
-      <div className="drawer__ele-c">
+      <div onClick={()=>{handeDrawerItemClicked('HOME')}} className={`drawer__ele-c ${clicked==='HOME'?'drawer__ele-selected':'drawer__ele-unselected'}`}>
         <img className="drawer__icon" src={HomeIcon} alt="Home Icon" />
         <p className="drawer__name">Home</p>
       </div>
-      <div className="drawer__ele-c">
+      <div onClick={()=>{handeDrawerItemClicked('REWARD')}} className={`drawer__ele-c ${clicked==='REWARD'?'drawer__ele-selected':'drawer__ele-unselected'}`}>
         <img className="drawer__icon" src={RewardIcon} alt="reward Icon" />
         <p className="drawer__name">Reward</p>
       </div>
-      <div className="drawer__ele-c">
+      <div onClick={()=>{handeDrawerItemClicked('PROFILE')}} className={`drawer__ele-c ${clicked==='PROFILE'?'drawer__ele-selected':'drawer__ele-unselected'}`}> 
         <img className="drawer__icon" src={ProfileIcon} alt="Profile Icon" />
         <p className="drawer__name">Profile</p>
       </div>
-      <div className="drawer__ele-c">
+      <div onClick={()=>{handeDrawerItemClicked('SETTINGS')}} className={`drawer__ele-c ${clicked==='SETTINGS'?'drawer__ele-selected':'drawer__ele-unselected'}`}>
         <img className="drawer__icon" src={SettingIcon} alt="setting Icon" />
         <p className="drawer__name">Setting</p>
       </div>
 
       <section>
-      <div className="drawer__logout">
-        <img className="drawer__icon" src={LogoutIcon} alt="setting Icon" />
-        <p className="drawer__logout-text">Logout</p>
-      </div>
+        <div className="drawer__logout">
+          <img className="drawer__icon" src={LogoutIcon} alt="setting Icon" />
+          <p className="drawer__logout-text">Logout</p>
+        </div>
       </section>
     </section>
   );
