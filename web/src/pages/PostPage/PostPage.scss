@@ -2,8 +2,7 @@
 @use "../../styles/partials/typograpgy" as *;
 @use "../../styles/partials/variable" as *;
 
-.homepage {
-
+.postpage {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -25,6 +24,4 @@
         bottom: 0;
         margin: 0 48px 48px 0;
     }
-
-
 }

@@ -20,6 +20,11 @@
     &__body{
         @include tablet {
             display: flex;
+            width: 90%;
+            justify-content: center;
+        }
+        @include desktop {
+            display: flex;
             width: 80%;
             justify-content: center;
         }
