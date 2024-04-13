@@ -1,0 +1,18 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.fab {
+    @include btn;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: $primary-color-penn-red;
+
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+    }
+}

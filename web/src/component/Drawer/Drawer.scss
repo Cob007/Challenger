@@ -3,129 +3,126 @@
 @use "../../styles/partials/variable" as *;
 
 .drawer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 24px;
+  background-color: white;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+
+  &__cont-logo {
+    margin: 48px 0;
+  }
+
+  &__logo {
+    width: 100%;
+    @include tablet {
+      content: url("../../assets/logo/logo_icon.svg");
+    }
+    @include desktop {
+      content: url("../../assets/logo/logo_colored.svg");
+    }
+  }
+
+  &__ele-c {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    height: 100vh;
-    padding:24px;
-    background-color: white;
-    border-radius: 0 4px 4px 0;
-    position: relative;
+    flex-direction: row;
+    background-color: #94020019;
+    border-radius: 24px;
+    align-items: center;
+    margin: 12px 0;
+    @include btn;
 
-    &__cont-logo {
-        margin: 48px 0; 
-        
-        
+    &:hover {
+      background-color: #960200;
     }
 
-    &__logo {
-        width: 100%;
-        @include tablet {
-            content: url('../../assets/logo/logo_icon.svg');
-        }
-        @include desktop {
-            content: url('../../assets/logo/logo_colored.svg');
-        }
+    @include tablet {
+      justify-content: center;
+    }
+  }
+
+  &__ele-selected {
+    background-color: #960200;
+  }
+
+  &__ele-unselected {
+    background-color: #94020019;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+
+    @include desktop {
+      margin: 0 8px;
+    }
+  }
+
+  &__logout {
+    width: 5vh;
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    background-color: hsla(1, 100%, 29%);
+    border-radius: 24px;
+    align-items: center;
+    margin: 14px 0;
+    bottom: 0;
+    left: 25%;
+
+    @include btn;
+
+    &:hover {
+      background-color: #960200;
     }
 
-    &__ele-c {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        background-color: #94020019;
-        border-radius: 24px;
-        align-items: center;
-        margin: 12px 0;
-        @include btn;
-
-        &:hover {
-            background-color: #960200;
-        }
-
-        @include tablet {
-            justify-content: center;
-        }
+    @include desktop {
+      width: 15vh;
     }
+  }
 
-    &__icon {
-        width: 40px;
-        height: 40px;
-        padding:  4px;
+  &__name {
+    display: none;
 
-        @include desktop {
-            margin: 0 8px;
+    @include desktop {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      font-size: 1rem;
+      align-items: center;
+      color: $primary-color-smoky-black;
+      &:hover {
+        color: $primary-color-snow;
+      }
 
-        }
+      &--logout {
+        color: white;
+      }
     }
+  }
 
-    
+  &__logout-text {
+    display: none;
 
-    &__logout {
+    @include desktop {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      font-size: 1rem;
+      align-items: center;
+      color: $primary-color-snow;
+      &:hover {
+        color: white;
+      }
 
-        
-        width: 5vh;
-        display: flex;
-        position: absolute;
-        flex-direction: row;
-        background-color: hsla(1, 100%, 29%);
-        border-radius: 24px;
-        align-items: center;
-        margin: 14px 0;
-        bottom: 0;
-        left: 25%;
-        
-        @include btn;
-
-        &:hover {
-            background-color: #960200;
-        }
-
-        @include desktop{
-            width: 15vh;
-
-        }
+      &--logout {
+        color: white;
+      }
     }
-
-    &__name {
-        display: none;
-
-        @include desktop {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            font-size: 1rem;
-            align-items: center;
-            color: $primary-color-smoky-black;
-            &:hover {
-                color: $primary-color-snow;
-            }
-    
-            &--logout {
-                color: white;
-            }
-        }
-        
-    }
-
-    &__logout-text {
-        display: none;
-
-        @include desktop {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            font-size: 1rem;
-            align-items: center;
-            color: $primary-color-smoky-black;
-            &:hover {
-                color: $primary-color-snow;
-            }
-    
-            &--logout {
-                color: white;
-            }
-        }
-        
-    }
-
+  }
 }
