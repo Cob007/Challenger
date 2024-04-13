@@ -5,6 +5,7 @@ import HomePage from "../../pages/HomePage/HomePage";
 import PostPage from "../../pages/PostPage/PostPage";
 import { Route, Routes } from "react-router-dom";
 import CreateChallenge from "../../pages/CreateChallengePage/CreateChallengePage";
+import CreatePost from "../../pages/CreatePostPage/CreatePostPage";
 
 
 const Main = () => {
@@ -18,7 +19,7 @@ const Main = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/:challengeId" element={<PostPage />} />
           <Route path="/c/add" element={<CreateChallenge/>}/>
-          <Route path="/:challengeId/p/add/" element={<Rewards/>}/>
+          <Route path="/:challengeId/p/add/" element={<CreatePost/>}/>
           <Route path="/awards" element={<Rewards />} />
           <Route path="/profile" element={<Rewards />} />
           <Route path="/settings" element={<Rewards />} />
