@@ -17,8 +17,7 @@ app.use('/check', (_req, res) => {
   res.json("App is running well!!");
 });
 
-app.use('/api/v1', userRoutes )
-app.use('/api/v1', challengeRoutes )
+app.use('/api/v1', [userRoutes, challengeRoutes, postRoutes] )
 
 
 app.listen(PORT, () => {
