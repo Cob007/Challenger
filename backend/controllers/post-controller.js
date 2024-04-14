@@ -1,5 +1,7 @@
 const { ErrorResponse, SuccessResponse } = require("../constant/Model");
 const MockData = require("../data/mockSample/challenge.json");
+const knex = require('knex')(require('../knexfile'))
+
 
 const getPostByChallengeId = async (_req, res) => {
   try {
@@ -31,7 +33,7 @@ const get = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { title, posturl, likes } = req.body;
+    const { title, posturl } = req.body;
 
     if (!!title || !!posturl || !!likes) {
       const userInfo = await knex
