@@ -5,12 +5,10 @@ const knex = require('knex')(require('../knexfile'))
 
 const getAll = async (_req, res) => {
   try {
-    const data = {
-      data: MockData,
-    };
+    const challengeAll = await knex('challenge');
     res
       .status(200)
-      .json(SuccessResponse(200, data.data, "Fetched Successfully"));
+      .json(SuccessResponse(200, challengeAll, "Fetched Successfully"));
   } catch (error) {
     res
       .status(404)
@@ -44,14 +42,19 @@ const post = async (req, res) => {
         const newChallengeObj = await knex("challenge").where({ id: newChallengeId });
 
         //then create cron job
-            //update challenge status 
-            //write to reward table
         const date = Date.now();
         const expireIn = (date + (duration * 60 * 1000));
         const job = new CronJob(new Date(expireIn),  () => {
+            //update challenge status 
+            //write to reward table
+            
+            //getPostByChallangeId = post sort by count
+
+            //then create re
 
             const d = new Date();
             console.log('Specific date:', date, ', onTick at:', d);
+
         });
 
         //job.start();
