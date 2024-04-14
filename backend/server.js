@@ -18,8 +18,10 @@ app.use('/check', (_req, res) => {
 });
 
 app.use('/api/v1', userRoutes )
+app.use('/api/v1', challengeRoutes )
 
 
 app.listen(PORT, () => {
   console.log(`Server is currently running at port ${PORT}, thanks ^_^`);
 });
+
