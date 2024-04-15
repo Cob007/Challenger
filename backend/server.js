@@ -17,9 +17,10 @@ app.use('/check', (_req, res) => {
   res.json("App is running well!!");
 });
 
-app.use('/api/v1', userRoutes )
+app.use('/api/v1', [userRoutes, challengeRoutes, postRoutes] )
 
 
 app.listen(PORT, () => {
   console.log(`Server is currently running at port ${PORT}, thanks ^_^`);
 });
+
