@@ -1,10 +1,11 @@
 const router = require("express").Router();
 
+const { authorize } = require("../constant/Authorize");
 const controller = require("../controllers/user-controller");
 
 router
 .route("/user")
-.get(controller.index);
+.get(authorize, controller.index);
 
 router
 .route("/user/register")
@@ -17,5 +18,6 @@ router
 router
 .route("/user/login/:userId")
 .get(controller.userById);
+
 
 module.exports = router;
