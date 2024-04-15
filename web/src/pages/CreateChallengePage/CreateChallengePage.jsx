@@ -3,18 +3,53 @@ import "./CreateChallengePage.scss";
 import Button from "../../component/Button/Button";
 
 import axios from "axios";
+import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
+import { useNavigate } from "react-router-dom";
 
 const CreateChallenge = () => {
 
+  const navigate = useNavigate();
+
+    
+
     const [data, setData] = useState({
         "title": '', 
-        
+        "description": '',
+        "contenturl":'',
+        "mediatype":'',
+        "duration":0
     })
 
   const [preview, setPreview] = useState("");
   const [mediaFile, setMediaFile] = useState("");
 
-  const handleTitleChange = (event) => {};
+  const handleTitleChange = (event) => {
+    setData({
+      ...data, 
+      title: event.target.value
+    })
+  };
+  const handleDescriptionChange = (event) => {
+    setData({
+      ...data, 
+      description: event.target.value
+    })
+  };
+  const handleMediaTypeChange = (event) => {
+    setData({
+      ...data, 
+      mediatype: event.target.value
+    })
+  };
+  const handleDurationChange = (event) => {
+    const duration = event.target.value;
+    setData({
+      ...data, 
+      duration: event.target.value
+    })
+  };
+
+
   const handleMediaChange = (event) => {
     setMediaFile(event.target.files[0]);
     setPreview(URL.createObjectURL(event.target.files[0]));
@@ -34,8 +69,45 @@ const CreateChallenge = () => {
       console.log(err);
     }
   };
+
   const submitCreatChallenge = async () => {
-    const contentUrl = await uploadContent();
+   
+    const token = localStorage.getItem("authToken");
+
+    const { title, description, duration, mediatype } = data
+
+    if (!!title && !!description && !!duration && !!mediatype && !!mediaFile){
+      
+      const contentUrl = await uploadContent();
+      console.log(contentUrl);
+      const url = `${BASE_URL}${STAGING_PATH}/challenge`;
+
+      const body = {
+        "title": data.title, 
+        "description": data.description,
+        "contenturl":contentUrl,
+        "mediatype":data.mediatype,
+        "duration":data.duration
+      }
+      console.log('body : ',body)
+      const apiRes = await axios.post(url, body ,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (apiRes.data.status === 200|| piRes.data.status === 201){
+        navigate("/app");
+      }
+      else{
+        alert("Please server error");
+    }
+
+      console.log("new chal", apiRes.data)
+    }else{
+      alert("Please provide input");
+    }
+
+
   };
   return (
     <main className="create">
@@ -64,14 +136,14 @@ const CreateChallenge = () => {
               className="create__textarea"
               name="details"
               type="textarea"
-              onChange={handleTitleChange}
+              onChange={handleDescriptionChange}
             />
           </div>
           <div className="create__field create__dp">
             <label className="create__label">Media Type</label>
             <select
               className="create__dropdown"
-              onChange={handleTitleChange}
+              onChange={handleMediaTypeChange}
               name="type"
             >
               <option value="default">Select</option>
@@ -84,14 +156,14 @@ const CreateChallenge = () => {
             <label className="create__label">Duration</label>
             <select
               className="create__dropdown"
-              onChange={handleTitleChange}
+              onChange={handleDurationChange}
               name="type"
             >
               <option value="default">Select</option>
-              <option value="image">3mins</option>
-              <option value="video">12 hrs</option>
-              <option value="text">24 hrs</option>
-              <option value="text">7 days</option>
+              <option value="3">3mins</option>
+              <option value="720">12 hrs</option>
+              <option value="1440">24 hrs</option>
+              <option value="10080">7 days</option>
             </select>
           </div>
           <div className="create__field">
