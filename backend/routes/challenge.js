@@ -8,5 +8,8 @@ router
 .get(authorize,  controller.getAll)
 .post(authorize, controller.post)
 
+router 
+.route('/challenge/:challengeId')
+.get(authorize, controller.getChallengeById);
 
 module.exports = router

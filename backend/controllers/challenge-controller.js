@@ -5,7 +5,9 @@ const knex = require("knex")(require("../knexfile"));
 
 const getAll = async (_req, res) => {
   try {
-    const challengeAll = await knex("challenge").where({status : "1"});
+    const challengeAll = await knex("challenge")
+                    .where({status : "1"})
+                    .orderBy("created_at", "desc");
     res
       .status(200)
       .json(SuccessResponse(200, challengeAll, "Fetched Successfully"));
@@ -92,11 +94,27 @@ const getPostByChallangeId = async (_id) => {
     .where({ challenge_id: _id })
     .orderBy("likes", "desc")
     .first();
-    console.log(res)
   return res;
 };
+
+
+const getChallengeById = async (req, res) => {
+    try {
+        const getChallenge = await knex("challenge")
+            .where({ id: req.params.challengeId }).first();
+            
+        res.status(200)
+        .json(SuccessResponse(200, getChallenge, "Fetched Successfully"));
+
+    } catch (error){
+        res
+      .status(404)
+      .json(ErrorResponse(400, `Error Occurred!! Caused by ${error}`));
+    }
+}
 
 module.exports = {
   getAll,
   post,
+  getChallengeById
 };

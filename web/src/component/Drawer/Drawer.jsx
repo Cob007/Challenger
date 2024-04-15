@@ -5,11 +5,14 @@ import SettingIcon from "../../assets/svg/settings.svg";
 import LogoutIcon from "../../assets/svg/logout.svg";
 import "./Drawer.scss";
 import Logo from "../../assets/logo/logo_colored.svg";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Drawer = (props) => {
   const navigate = useNavigate();
+  const location = useLocation()
+
+
   const [clicked, setClicked] = useState('HOME')
   const handeDrawerItemClicked = (value) => {
     setClicked(value)
@@ -30,6 +33,41 @@ const Drawer = (props) => {
         navigate("/");
     }
   };
+
+  const handleLogOut = () => {
+    localStorage.removeItem('authToken')
+    navigate("/auth");
+  }
+
+  const setActiveDrawer = () => {
+    const path = location.pathname;
+    switch (path) {
+      case "/app":
+        setClicked("HOME");
+        break;
+      case "/app/awards":
+        setClicked("REWARD");
+        break;
+      case "/app/profile":
+        setClicked("PROFILE");
+        break;
+      case "/app/settings":
+        setClicked("SETTINGS");
+        break;
+      default:
+        setClicked("HOME");
+    }
+
+  }
+
+  useEffect(()=> {
+    setActiveDrawer()
+  }, [location.pathname])
+
+  console.log(location.pathname)
+
+  
+
 
   return (
     <section className="drawer">
@@ -55,7 +93,7 @@ const Drawer = (props) => {
       </div>
 
       <section>
-        <div className="drawer__logout">
+        <div onClick={handleLogOut} className="drawer__logout">
           <img className="drawer__icon" src={LogoutIcon} alt="setting Icon" />
           <p className="drawer__logout-text">Logout</p>
         </div>

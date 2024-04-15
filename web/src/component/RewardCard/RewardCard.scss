@@ -1,0 +1,31 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.rcard {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 4px;
+    border: 1px solid $primary-color-alabaster;
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__img {
+        width: 40%;
+    }
+
+    &__span,  &__title, &__likes{
+        margin: 4px 0;
+    }
+
+   
+
+
+
+}

@@ -4,13 +4,13 @@ import ProfilePic from "../../assets/images/avatar.png";
 import Like from "../../assets/svg/like.svg";
 
 const PostCard = (props) => {
-  const { post } = props;
+  const { post, handleLikes } = props;
 
   return (
     <section className="postcard">
       <img
         className="postcard__img"
-        src={PhotoOfThDay}
+        src={post?.posturl}
         alt="challenge sample photo"
       />
 
@@ -23,11 +23,11 @@ const PostCard = (props) => {
           />
         </div>
         <article className="postcard__body">
-          <h2 className="postcard__username">Micheal Cob</h2>
-          <p className="postcard__likes">40 Votes</p>
+          <h2 className="postcard__username">{post?.firstname} {post?.lastname}</h2>
+          <p className="postcard__likes">{post?.likes} Votes</p>
         </article>
       </div>
-      <img className="postcard__icon" src={Like} alt="icon to like"/>
+      <img onClick={() => {handleLikes(post?.id)}} className="postcard__icon" src={Like} alt="icon to like"/>
     </section>
   );
 };

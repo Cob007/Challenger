@@ -18,9 +18,9 @@ const LoginCard = (props) => {
     if (!!email && !!password) {
       const url = `${BASE_URL}${STAGING_PATH}/user/login`;
       const apiRes = await axios.post(url, loginData);
-      console.log(apiRes);
-      if (loginRes.data.status === 200) {
-        localStorage.setItem("authToken", loginRes.data.token);
+      console.log(apiRes.data.data.token);
+      if (apiRes.data.status === 200) {
+        localStorage.setItem("authToken", apiRes.data.data.token);
         navigate("/app");
       }
     } else {
