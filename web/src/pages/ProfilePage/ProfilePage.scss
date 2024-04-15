@@ -26,6 +26,24 @@
         height: 1px;
         background-color: $primary-color-alabaster;
     }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__pp-div {
+        width: 25%;
+        margin: 24px 0;
+
+    }
+
+    &__pp {
+        width: 100%;
+        border-radius: 50%;
+    }
     
 }
 
