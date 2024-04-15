@@ -13,6 +13,10 @@ router
 .route('/post/vote/:postId')
 .get(authorize, controller.vote)
 
+router
+.route('/reward')
+.get(authorize, controller.reward)
+
 
 
 
