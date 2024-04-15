@@ -18,9 +18,8 @@
 
   &__logo {
     width: 100%;
-    @include tablet {
-      content: url("../../assets/logo/logo_icon.svg");
-    }
+    content: url("../../assets/logo/logo_icon.svg");
+  
     @include desktop {
       content: url("../../assets/logo/logo_colored.svg");
     }
