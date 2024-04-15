@@ -1,15 +1,46 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import "./LoginCard.scss";
+import { useState } from "react";
+import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
+import axios from "axios";
 const LoginCard = (props) => {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
   const { handleViewChange } = props;
   const navigate = useNavigate();
 
-  const handleBtnClicked = () => {
-    navigate('/app')
-  }
+  const handleBtnClicked = async () => {
+    const { email, password } = loginData;
+    if (!!email && !!password) {
+      const url = `${BASE_URL}${STAGING_PATH}/user/login`;
+      const apiRes = await axios.post(url, loginData);
+      console.log(apiRes);
+      if (loginRes.data.status === 200) {
+        localStorage.setItem("authToken", loginRes.data.token);
+        navigate("/app");
+      }
+    } else {
+      alert("Please provide credentials");
+    }
+  };
 
-  const handleUsernameChange = (event) => {};
+  const handleUsernameChange = (event) => {
+    setLoginData({
+      ...loginData,
+      email: event.target.value,
+    });
+  };
+  const handlePasswordChange = (event) => {
+    setLoginData({
+      ...loginData,
+      password: event.target.value,
+    });
+  };
+
   return (
     <main className="logincard">
       <div className="logincard__div-input">
@@ -18,7 +49,7 @@ const LoginCard = (props) => {
           type="text"
           name="username"
           onChange={handleUsernameChange}
-          placeholder="Username or email address"
+          placeholder="Email address"
         />
       </div>
 
@@ -27,13 +58,13 @@ const LoginCard = (props) => {
           className="logincard__password"
           type="password"
           name="username"
-          onChange={handleUsernameChange}
+          onChange={handlePasswordChange}
           placeholder="Password"
         />
       </div>
 
       <div className="logincard__div-input">
-        <Button  name={"Login"} btnClick={handleBtnClicked}/>
+        <Button name={"Login"} btnClick={handleBtnClicked} />
       </div>
 
       <div className="logincard__div-input">
@@ -50,9 +81,7 @@ const LoginCard = (props) => {
         </p>
       </div>
       <div className="logincard__div-input">
-        <p className="logincard__p logincard__tc ">
-          Terms and conditions
-        </p>
+        <p className="logincard__p logincard__tc ">Terms and conditions</p>
       </div>
     </main>
   );
