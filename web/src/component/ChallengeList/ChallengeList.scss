@@ -1,0 +1,14 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.list {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+
+    @include desktop{
+        width: 80%;
+
+    }
+}

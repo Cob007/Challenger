@@ -1,0 +1,38 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  box-sizing: border-box;
+  background-color: #94020019;
+  margin: 24px 0;
+  border-radius: 24px;
+
+  &__search-input {
+    width: 100%;
+    background-color: #0000;
+    border: none;
+    margin: 0 12px;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: $primary-color-penn-red;
+      font-size: 1rem;
+      font-family: 'Avenir';
+    }
+
+
+    &:focus {
+        outline: none;
+    }
+  }
+
+  &__btn {
+    width: 30px;
+    padding: 12px;
+    @include btn;
+  }
+}

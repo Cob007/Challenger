@@ -1,9 +1,15 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./LandingPage.scss";
 import Logo from "../../assets/logo/logo_white.svg";
 import { useEffect, useState } from "react";
 
 const LandingPage = () => {
+
+  const  navigate  = useNavigate()
+
+  const handleClick = () => {
+    navigate('/auth')
+  }
 
   const screens =[
     {
@@ -50,7 +56,7 @@ const LandingPage = () => {
     <section className={`cont-lp ${style}`}>
       <img className="cont-lp__logo" src={Logo} alt="App Logo" />
       <h1 className="cont-lp__header"><span>{screen.title}</span> A Challenge</h1>
-      <button className="cont-lp__button">Get Started</button>
+      <button onClick={handleClick} className="cont-lp__button">Get Started</button>
     </section>
   );
 };

@@ -1,0 +1,30 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.homepage {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    align-items: center;
+
+
+    &__view{ 
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        overflow: hidden;
+        align-items: center;
+    }
+
+    &__fab {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 48px 48px 0;
+    }
+
+
+}

@@ -1,0 +1,31 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+
+.settings {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        margin: 24px;
+
+        @include desktop {
+            margin: 24px 48px;
+        }
+    }
+    &__title {
+        font-size: 2rem;
+        margin: 4px 0;
+    }
+    &__divider {
+        width: 100%;
+        height: 1px;
+        background-color: $primary-color-alabaster;
+    }
+    
+}
+

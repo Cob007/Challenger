@@ -1,0 +1,22 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: $padding-8;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: $primary-color-penn-red;
+  @include btn;
+
+
+  &__text {
+    font-size: 1rem;
+    color: white;
+    font-family: 'Avenir' ;
+  }
+}

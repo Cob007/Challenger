@@ -1,0 +1,53 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typograpgy" as *;
+@use "../../styles/partials/variable" as *;
+
+.logincard {
+  display: flex;
+  flex-direction: column;
+  padding: $padding-24;
+  border: 1px solid $secondary-color-gray;
+  border-radius: 12px;
+  margin: auto;
+  background: white;
+  width: 70%;
+  filter: drop-shadow(0 0 0.35rem rgb(223, 223, 223));
+
+  &__div-input {
+    margin: 12px 0 0 0;
+  }
+
+  &__username {
+    width: 100%;
+    padding: $padding-16;
+    font-size: 1rem;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid $primary-color-alabaster;
+  }
+
+  &__username::placeholder,
+  &__password::placeholder {
+    font-size: 1rem;
+    font-family: "Avenir";
+  }
+  &__password {
+    width: 100%;
+    padding: $padding-16;
+    font-size: 1rem;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid $primary-color-alabaster;
+  }
+  &__p {
+    font-size: 1rem;
+    color: $primary-color-smoky-black;
+    text-align: center;
+    &--span {
+        color: $primary-color-penn-red;
+        @include btn;
+    }
+  }
+
+
+}
