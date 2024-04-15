@@ -7,48 +7,44 @@ import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
 import { useNavigate } from "react-router-dom";
 
 const CreateChallenge = () => {
-
   const navigate = useNavigate();
 
-    
-
-    const [data, setData] = useState({
-        "title": '', 
-        "description": '',
-        "contenturl":'',
-        "mediatype":'',
-        "duration":0
-    })
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    contenturl: "",
+    mediatype: "",
+    duration: 0,
+  });
 
   const [preview, setPreview] = useState("");
   const [mediaFile, setMediaFile] = useState("");
 
   const handleTitleChange = (event) => {
     setData({
-      ...data, 
-      title: event.target.value
-    })
+      ...data,
+      title: event.target.value,
+    });
   };
   const handleDescriptionChange = (event) => {
     setData({
-      ...data, 
-      description: event.target.value
-    })
+      ...data,
+      description: event.target.value,
+    });
   };
   const handleMediaTypeChange = (event) => {
     setData({
-      ...data, 
-      mediatype: event.target.value
-    })
+      ...data,
+      mediatype: event.target.value,
+    });
   };
   const handleDurationChange = (event) => {
     const duration = event.target.value;
     setData({
-      ...data, 
-      duration: event.target.value
-    })
+      ...data,
+      duration: event.target.value,
+    });
   };
-
 
   const handleMediaChange = (event) => {
     setMediaFile(event.target.files[0]);
@@ -71,43 +67,48 @@ const CreateChallenge = () => {
   };
 
   const submitCreatChallenge = async () => {
-   
-    const token = localStorage.getItem("authToken");
+    try {
+      const token = localStorage.getItem("authToken");
 
-    const { title, description, duration, mediatype } = data
+      const { title, description, duration, mediatype } = data;
 
-    if (!!title && !!description && !!duration && !!mediatype && !!mediaFile){
-      
-      const contentUrl = await uploadContent();
-      console.log(contentUrl);
-      const url = `${BASE_URL}${STAGING_PATH}/challenge`;
+      if (
+        !!title &&
+        !!description &&
+        !!duration &&
+        !!mediatype &&
+        !!mediaFile
+      ) {
+        const contentUrl = await uploadContent();
+        console.log(contentUrl);
+        const url = `${BASE_URL}${STAGING_PATH}/challenge`;
 
-      const body = {
-        "title": data.title, 
-        "description": data.description,
-        "contenturl":contentUrl,
-        "mediatype":data.mediatype,
-        "duration":data.duration
+        const body = {
+          title: data.title,
+          description: data.description,
+          contenturl: contentUrl,
+          mediatype: data.mediatype,
+          duration: data.duration,
+        };
+        console.log("body : ", body);
+        const apiRes = await axios.post(url, body, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (apiRes.data.status === 200 || piRes.data.status === 201) {
+          navigate("/app");
+        } else {
+          alert("Please server error");
+        }
+
+        console.log("new chal", apiRes.data);
+      } else {
+        alert("Please provide input");
       }
-      console.log('body : ',body)
-      const apiRes = await axios.post(url, body ,{
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (apiRes.data.status === 200|| piRes.data.status === 201){
-        navigate("/app");
-      }
-      else{
-        alert("Please server error");
+    } catch (err) {
+      console.log(err);
     }
-
-      console.log("new chal", apiRes.data)
-    }else{
-      alert("Please provide input");
-    }
-
-
   };
   return (
     <main className="create">
