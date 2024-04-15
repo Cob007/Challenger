@@ -7,6 +7,8 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CreateChallenge from "../../pages/CreateChallengePage/CreateChallengePage";
 import CreatePost from "../../pages/CreatePostPage/CreatePostPage";
 import { useEffect } from "react";
+import Profile from "../../pages/ProfilePage/ProfilePage";
+import Settings from "../../pages/SettingsPage/SettingsPage";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -16,9 +18,8 @@ const Main = () => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       navigate("/auth");
-    } else {
-      navigate("/app");
     }
+
   }, []);
 
   return (
@@ -33,8 +34,8 @@ const Main = () => {
           <Route path="/c/add" element={<CreateChallenge />} />
           <Route path="/:challengeId/p/add/" element={<CreatePost />} />
           <Route path="/awards" element={<Rewards />} />
-          <Route path="/profile" element={<Rewards />} />
-          <Route path="/settings" element={<Rewards />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
     </main>
