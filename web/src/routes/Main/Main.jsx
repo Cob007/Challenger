@@ -3,12 +3,28 @@ import Drawer from "../../component/Drawer/Drawer";
 import Rewards from "../../component/Rewards/Rewards";
 import HomePage from "../../pages/HomePage/HomePage";
 import PostPage from "../../pages/PostPage/PostPage";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CreateChallenge from "../../pages/CreateChallengePage/CreateChallengePage";
 import CreatePost from "../../pages/CreatePostPage/CreatePostPage";
+import { useEffect } from "react";
 
 
 const Main = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+
+  useEffect(()=> {
+    const authToken = localStorage.getItem('authToken')
+    if (!authToken) {
+      navigate('/auth')
+    } else {
+      navigate('/app')
+    }
+
+  },[location.pathname])
+
+
   return (
     <main className="app">
       <div className="app__drawer">

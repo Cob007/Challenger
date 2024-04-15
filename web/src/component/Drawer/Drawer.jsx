@@ -31,6 +31,9 @@ const Drawer = (props) => {
     }
   };
 
+  const handleLogOut = () => localStorage.removeItem('authToken')
+
+
   return (
     <section className="drawer">
       <article onClick={()=>{handeDrawerItemClicked('HOME')}} className="drawer__cont-logo">
@@ -55,7 +58,7 @@ const Drawer = (props) => {
       </div>
 
       <section>
-        <div className="drawer__logout">
+        <div onClick={handleLogOut} className="drawer__logout">
           <img className="drawer__icon" src={LogoutIcon} alt="setting Icon" />
           <p className="drawer__logout-text">Logout</p>
         </div>
