@@ -20,13 +20,19 @@ const getPostByChallengeId = async (_req, res) => {
 const get = async (req, res) => {
   try {
     const allPost = await knex("post")
-    .where({
-      challenge_id: req.params.challengeId,
-    })
-    .select('post.id', 'title','posturl', 'likes', 'user.firstname', 'user.lastname')
-    .join('user', {'user.id': 'post.user_id'})
-    
-    
+      .where({
+        challenge_id: req.params.challengeId,
+      })
+      .select(
+        "post.id",
+        "title",
+        "posturl",
+        "likes",
+        "user.firstname",
+        "user.lastname"
+      )
+      .join("user", { "user.id": "post.user_id" });
+
     res.status(200).json(SuccessResponse(200, allPost, "Fetched Successfully"));
   } catch (error) {
     res
@@ -79,18 +85,18 @@ const vote = async (req, res) => {
       .where({ email: req.email })
       .first();
 
+      //TODO create a table to likes
+
     const getPost = await knex("post").where({ id: req.params.postId }).first();
 
-    console.log(getPost.likes)
-    console.log(getPost.likes+1)
-
+    console.log(getPost.likes);
+    console.log(getPost.likes + 1);
 
     const re = await knex("post")
       .where({ id: req.params.postId })
       .update({
-        likes: getPost.likes+1,
+        likes: getPost.likes + 1,
       });
-
 
     res.status(200).json(SuccessResponse(200, re, "Fetched Successfully"));
   } catch (error) {
@@ -100,9 +106,42 @@ const vote = async (req, res) => {
   }
 };
 
+const reward = async (req, res) => {
+  try {
+    const userId = await getUserId(req.email);
+    const getReward = await knex("reward")
+      .where({
+        "reward.user_id": userId.id,
+      })
+      .select("post.posturl", "challenge.title", "post.likes")
+      .join("post", { "post.id": "reward.post_id" })
+      .join("challenge", { "challenge.id": "reward.challenge_id" });
+
+      res.status(200).json(SuccessResponse(200, getReward, "Fetched Successfully"));
+
+  } catch (error) {
+    res
+      .status(404)
+      .json(ErrorResponse(400, `Error Occurred!! Caused by ${error}`));
+
+  }
+};
+
+const getUserId = async ( email ) => {
+    return await knex
+    .select("id")
+    .from("user")
+    .where({ email: email })
+    .first();
+
+}
+
+
+
 module.exports = {
   getPostByChallengeId,
   get,
   create,
   vote,
+  reward,
 };

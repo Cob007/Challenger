@@ -7,14 +7,14 @@ require("dotenv").config();
 const jwt = require('jsonwebtoken')
 
 
-const index = async (_req, res) => {
+const index = async (req, res) => {
   try {
-    const data = {
-      data: MockData,
-    };
+    const getUser = await knex("user")
+    .where({ "email": req.email })
+    
     res
       .status(200)
-      .json(SuccessResponse(200, data.data, "Fetched Successfully"));
+      .json(SuccessResponse(200, getUser, "Fetched Successfully"));
   } catch (error) {
     res
       .status(404)
