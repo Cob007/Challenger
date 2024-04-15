@@ -19,9 +19,14 @@ const getPostByChallengeId = async (_req, res) => {
 
 const get = async (req, res) => {
   try {
-    const allPost = await knex("post").where({
+    const allPost = await knex("post")
+    .where({
       challenge_id: req.params.challengeId,
-    });
+    })
+    .select('post.id', 'title','posturl', 'likes', 'user.firstname', 'user.lastname')
+    .join('user', {'user.id': 'post.user_id'})
+    
+    
     res.status(200).json(SuccessResponse(200, allPost, "Fetched Successfully"));
   } catch (error) {
     res
