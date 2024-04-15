@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import Login from "../../component/LoginCard/LoginCard";
 import Register from "../../component/RegisterCard/RegisterCard";
 import "./LoginPage.scss";
 import Logo from "../../assets/logo/logo_colored.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [view, setView] = useState("login");
+
+  const navigate = useNavigate()
+  const location = useLocation()
+
+
+  useEffect(()=> {
+    const authToken = localStorage.getItem('authToken')
+    if (!authToken) {
+      navigate('/auth')
+    } else {
+      navigate('/app')
+    }
+
+  },[location.pathname])
+
 
   const handleViewChange = (_view) => {
     setView(_view);
