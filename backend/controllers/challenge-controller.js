@@ -5,7 +5,7 @@ const knex = require("knex")(require("../knexfile"));
 
 const getAll = async (_req, res) => {
   try {
-    const challengeAll = await knex("challenge");
+    const challengeAll = await knex("challenge").where({status : "1"});
     res
       .status(200)
       .json(SuccessResponse(200, challengeAll, "Fetched Successfully"));
@@ -48,29 +48,31 @@ const post = async (req, res) => {
 
       //then create cron job
       const date = Date.now();
-      const expireIn = date + duration * 60 * 1000;
+      const expireIn = date + (duration * 60 * 1000);
       const job = new CronJob(new Date(expireIn), async () => {
         //write to reward table
+
 
         //getPostByChallangeId = post sort by count
         const post = await getPostByChallangeId(newChallengeId);
         console.log("post by highest likes", post);
         
         //update challenge status
-        const createReward = await knex("challenge")
+        await knex("challenge")
           .where({ id: newChallengeId })
           .update({ status: false });
 
         //then create reward
-        
-
-
-
+        await knex('reward').insert({
+            challenge_id: post.challenge_id,
+            post_id: post.id,
+            user_id: post.user_id
+        })
         const d = new Date();
         console.log("Specific date:", date, ", onTick at:", d);
       });
 
-      //job.start();
+      job.start();
 
       res
         .status(200)
@@ -90,7 +92,8 @@ const getPostByChallangeId = async (_id) => {
     .where({ challenge_id: _id })
     .orderBy("likes", "desc")
     .first();
-  return res[0];
+    console.log(res)
+  return res;
 };
 
 module.exports = {

@@ -9,7 +9,6 @@ router
 .post(authorize, controller.create)
 
 
-
 router
 .route('/post/vote/:postId')
 .get(authorize, controller.vote)

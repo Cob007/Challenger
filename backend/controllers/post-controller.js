@@ -1,7 +1,6 @@
 const { ErrorResponse, SuccessResponse } = require("../constant/Model");
 const MockData = require("../data/mockSample/challenge.json");
-const knex = require('knex')(require('../knexfile'))
-
+const knex = require("knex")(require("../knexfile"));
 
 const getPostByChallengeId = async (_req, res) => {
   try {
@@ -67,14 +66,28 @@ const create = async (req, res) => {
   }
 };
 
-const vote = async (_req, res) => {
+const vote = async (req, res) => {
   try {
-    const data = {
-      data: MockData,
-    };
-    res
-      .status(200)
-      .json(SuccessResponse(200, data.data, "Fetched Successfully"));
+    const userInfo = await knex
+      .select("id")
+      .from("user")
+      .where({ email: req.email })
+      .first();
+
+    const getPost = await knex("post").where({ id: req.params.postId }).first();
+
+    console.log(getPost.likes)
+    console.log(getPost.likes+1)
+
+
+    const re = await knex("post")
+      .where({ id: req.params.postId })
+      .update({
+        likes: getPost.likes+1,
+      });
+
+
+    res.status(200).json(SuccessResponse(200, re, "Fetched Successfully"));
   } catch (error) {
     res
       .status(404)
