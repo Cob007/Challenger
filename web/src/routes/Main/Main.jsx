@@ -22,7 +22,7 @@ const Main = () => {
       navigate('/app')
     }
 
-  },[location.pathname])
+  },[])
 
 
   return (
