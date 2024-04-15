@@ -15,14 +15,18 @@ const HomePage = () => {
   };
 
   const getActiveChallenge = async (token) => {
-    const url = `${BASE_URL}${STAGING_PATH}/challenge`;
-    const apiRes = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(apiRes.data.data);
-    setData(apiRes.data.data);
+    try {
+      const url = `${BASE_URL}${STAGING_PATH}/challenge`;
+      const apiRes = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(apiRes.data.data);
+      setData(apiRes.data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
