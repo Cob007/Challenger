@@ -11,6 +11,7 @@ const index = async (req, res) => {
   try {
     const getUser = await knex("user")
     .where({ "email": req.email })
+    .first();
     
     res
       .status(200)
@@ -24,7 +25,6 @@ const index = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    console.log(req.body);
     const { firstname, lastname, username, email, password } = req.body;
     if (!!firstname || !!lastname || !!username || !!email || !!password) {
       bcrypt.hash(password, 10, async (err, hash) => {
@@ -38,9 +38,7 @@ const register = async (req, res) => {
         });
 
         const newUserId = result[0];
-        console.log(newUserId)
         const createdUser = await knex("user").where({ id: newUserId });
-        console.log(createdUser)
 
         const token = jwt.sign({ email }, process.env.SECRET_KEY);
         const dataRes = {
@@ -68,7 +66,6 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     const userRes = await knex.from("user").where({ email }).first();
-    console.log(userRes);
     const hash = userRes.password;
 
     bcrypt.compare(password, hash, (err, result) => {
@@ -89,8 +86,6 @@ const login = async (req, res) => {
           .status(200)
           .json(SuccessResponse(200, dataRes, "Fetched Successfully"));
       } else {
-        // Passwords do not match
-        console.log("passwords dont match");
         res.status(404).json(ErrorResponse(404, "Password dont match!"));
       }
     });

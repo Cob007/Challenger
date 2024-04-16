@@ -28,8 +28,13 @@
     }
     &__body {
         display: flex;
-        flex-direction: row;
+        flex-direction: column-reverse;
         box-sizing: border-box;
+        align-items: center;
+
+        @include tablet {
+            flex-direction: row;
+        }
     }
     &__list {
         display: flex;

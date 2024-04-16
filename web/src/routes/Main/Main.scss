@@ -9,6 +9,7 @@
     box-sizing: border-box;
     background: $secondary-color-gray ;
     &__drawer{
+        width: 15% ;
         @include tablet {
             width: 10%;
         }
@@ -18,15 +19,14 @@
     }
 
     &__body{
+        width: 85%;
+        display: flex;
+        justify-content: center;
         @include tablet {
-            display: flex;
             width: 90%;
-            justify-content: center;
         }
         @include desktop {
-            display: flex;
             width: 80%;
-            justify-content: center;
         }
     }
     

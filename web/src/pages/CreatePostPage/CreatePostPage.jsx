@@ -19,7 +19,6 @@ const CreatePost = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(apiRes.data.data);
       setChallengeData(apiRes.data.data);
     } catch (error) {
       console.log(error);
@@ -40,18 +39,20 @@ const CreatePost = () => {
   };
 
   const uploadContent = async () => {
-    const url = `https://api.cloudinary.com/v1_1/${
-      import.meta.env.VITE_CLOUD_NAME
-    }/image/upload`;
     try {
-      const formData = new FormData();
-      formData.append("file", mediaFile);
-      formData.append("upload_preset", import.meta.env.VITE_PRESET);
-      const res = await axios.post(url, formData);
-      return res.data.secure_url;
-    } catch (err) {
-      console.log(err);
-    }
+      const url = `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`;
+      try {
+        const formData = new FormData();
+        formData.append("file", mediaFile);
+        formData.append("upload_preset", import.meta.env.VITE_PRESET);
+        const res = await axios.post(url, formData);
+        return res.data.secure_url;
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (error) {}
   };
 
   const submitPostForChallenge = async () => {

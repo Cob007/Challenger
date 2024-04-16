@@ -22,7 +22,6 @@ const HomePage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(apiRes.data.data);
       setData(apiRes.data.data);
     } catch (error) {
       console.log(error);

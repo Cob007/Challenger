@@ -6,6 +6,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    overflow-y: scroll;
+
 
 
     &__header {
@@ -31,15 +34,26 @@
 
     &__body {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         box-sizing: border-box;
+
+        @include tablet {
+            flex-direction: row;
+        }
     }
 
     &__form {
         display: flex;
         flex-direction: column;
         margin: 24px;
-        width: 50%;
+        width: 90%;
+        overflow-y: scroll;
+        box-sizing: border-box;
+
+        @include tablet {
+            width: 50%;
+
+        }
 
         @include desktop {
             margin: 24px 48px;
