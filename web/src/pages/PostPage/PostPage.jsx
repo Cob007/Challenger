@@ -10,33 +10,36 @@ import axios from "axios";
 const PostPage = () => {
   const { challengeId } = useParams();
   const [data, setData] = useState([]);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   const getPostByChallengeId = async (_token) => {
-    const url = `${BASE_URL}${STAGING_PATH}/post/${challengeId}`;
-    const apiRes = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${_token}`,
-      },
-    });
-    setData(apiRes.data.data);
+    try {
+      const url = `${BASE_URL}${STAGING_PATH}/post/${challengeId}`;
+      const apiRes = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${_token}`,
+        },
+      });
+      setData(apiRes.data.data);
+    } catch (error) {}
   };
 
-
   const submitLikes = async (postId) => {
-    const url = `${BASE_URL}${STAGING_PATH}/post/vote/${postId}`;
-    const apiRes = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    getPostByChallengeId(token)
-  }
+    try {
+      const url = `${BASE_URL}${STAGING_PATH}/post/vote/${postId}`;
+      const apiRes = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      getPostByChallengeId(token);
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
-      setToken(authToken)
+      setToken(authToken);
       getPostByChallengeId(authToken);
     }
   }, []);

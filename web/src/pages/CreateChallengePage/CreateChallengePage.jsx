@@ -52,18 +52,20 @@ const CreateChallenge = () => {
   };
 
   const uploadContent = async () => {
-    const url = `https://api.cloudinary.com/v1_1/${
-      import.meta.env.VITE_CLOUD_NAME
-    }/image/upload`;
     try {
-      const formData = new FormData();
-      formData.append("file", mediaFile);
-      formData.append("upload_preset", import.meta.env.VITE_PRESET);
-      const res = await axios.post(url, formData);
-      return res.data.secure_url;
-    } catch (err) {
-      console.log(err);
-    }
+      const url = `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`;
+      try {
+        const formData = new FormData();
+        formData.append("file", mediaFile);
+        formData.append("upload_preset", import.meta.env.VITE_PRESET);
+        const res = await axios.post(url, formData);
+        return res.data.secure_url;
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (error) {}
   };
 
   const submitCreatChallenge = async () => {
@@ -99,7 +101,6 @@ const CreateChallenge = () => {
         } else {
           alert("Please server error");
         }
-
       } else {
         alert("Please provide input");
       }

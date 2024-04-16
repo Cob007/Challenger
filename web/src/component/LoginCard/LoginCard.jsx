@@ -14,17 +14,19 @@ const LoginCard = (props) => {
   const navigate = useNavigate();
 
   const handleBtnClicked = async () => {
-    const { email, password } = loginData;
-    if (!!email && !!password) {
-      const url = `${BASE_URL}${STAGING_PATH}/user/login`;
-      const apiRes = await axios.post(url, loginData);
-      if (apiRes.data.status === 200) {
-        localStorage.setItem("authToken", apiRes.data.data.token);
-        navigate("/app");
+    try {
+      const { email, password } = loginData;
+      if (!!email && !!password) {
+        const url = `${BASE_URL}${STAGING_PATH}/user/login`;
+        const apiRes = await axios.post(url, loginData);
+        if (apiRes.data.status === 200) {
+          localStorage.setItem("authToken", apiRes.data.data.token);
+          navigate("/app");
+        }
+      } else {
+        alert("Please provide credentials");
       }
-    } else {
-      alert("Please provide credentials");
-    }
+    } catch (error) {}
   };
 
   const handleUsernameChange = (event) => {
