@@ -80,7 +80,6 @@ const CreateChallenge = () => {
         !!mediaFile
       ) {
         const contentUrl = await uploadContent();
-        console.log(contentUrl);
         const url = `${BASE_URL}${STAGING_PATH}/challenge`;
 
         const body = {
@@ -90,7 +89,6 @@ const CreateChallenge = () => {
           mediatype: data.mediatype,
           duration: data.duration,
         };
-        console.log("body : ", body);
         const apiRes = await axios.post(url, body, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -102,7 +100,6 @@ const CreateChallenge = () => {
           alert("Please server error");
         }
 
-        console.log("new chal", apiRes.data);
       } else {
         alert("Please provide input");
       }

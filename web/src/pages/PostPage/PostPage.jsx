@@ -19,20 +19,17 @@ const PostPage = () => {
         Authorization: `Bearer ${_token}`,
       },
     });
-    console.log(apiRes.data.data);
     setData(apiRes.data.data);
   };
 
 
   const submitLikes = async (postId) => {
-    console.log("likes")
     const url = `${BASE_URL}${STAGING_PATH}/post/vote/${postId}`;
     const apiRes = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    console.log(apiRes)
     getPostByChallengeId(token)
   }
 
