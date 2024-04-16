@@ -52,7 +52,6 @@ const create = async (req, res) => {
         .where({ email: req.email })
         .first();
 
-      //store to db
       const result = await knex("post").insert({
         title: title,
         posturl: posturl,
@@ -60,7 +59,6 @@ const create = async (req, res) => {
         challenge_id: req.params.challengeId,
         user_id: userInfo.id,
       });
-      console.log(result);
       const newPostId = result[0];
       const newPostObj = await knex("post").where({ id: newPostId });
 
@@ -85,12 +83,8 @@ const vote = async (req, res) => {
       .where({ email: req.email })
       .first();
 
-      //TODO create a table to likes
 
     const getPost = await knex("post").where({ id: req.params.postId }).first();
-
-    console.log(getPost.likes);
-    console.log(getPost.likes + 1);
 
     const re = await knex("post")
       .where({ id: req.params.postId })

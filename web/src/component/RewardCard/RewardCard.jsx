@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import './RewardCard.scss'
 const RewardCard = (props) => {
     const { data } =props
-    console.log(data)
     return (
         <main className='rcard'>
             <img className='rcard__img' src={data?.posturl} alt='post image url'/>
