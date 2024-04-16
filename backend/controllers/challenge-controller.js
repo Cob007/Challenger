@@ -21,10 +21,6 @@ const getAll = async (_req, res) => {
 const post = async (req, res) => {
   try {
     const { title, description, contenturl, mediatype, duration } = req.body;
-    console.log(req.email);
-    console.log(req.body);
-
-    //convert duration to minutes
     if (!!title || !!description || !!contenturl || !!mediatype || !!duration) {
       const userInfo = await knex
         .select("id")
@@ -32,7 +28,6 @@ const post = async (req, res) => {
         .where({ email: req.email })
         .first();
 
-      //store to db
       const result = await knex("challenge").insert({
         title: title,
         description: description,
@@ -42,36 +37,26 @@ const post = async (req, res) => {
         status: true,
         user_id: userInfo.id,
       });
-      console.log(result);
       const newChallengeId = result[0];
       const newChallengeObj = await knex("challenge").where({
         id: newChallengeId,
       });
 
-      //then create cron job
       const date = Date.now();
       const expireIn = date + (duration * 60 * 1000);
       const job = new CronJob(new Date(expireIn), async () => {
-        //write to reward table
 
-
-        //getPostByChallangeId = post sort by count
         const post = await getPostByChallangeId(newChallengeId);
-        console.log("post by highest likes", post);
         
-        //update challenge status
         await knex("challenge")
           .where({ id: newChallengeId })
           .update({ status: false });
 
-        //then create reward
         await knex('reward').insert({
             challenge_id: post.challenge_id,
             post_id: post.id,
             user_id: post.user_id
         })
-        const d = new Date();
-        console.log("Specific date:", date, ", onTick at:", d);
       });
 
       job.start();
