@@ -21,6 +21,6 @@ app.use('/api/v1', [userRoutes, challengeRoutes, postRoutes] )
 
 
 app.listen(PORT, () => {
-  console.log(`Server is currently running hi at port ${PORT}, thanks ^_^`);
+  console.log(`Server is currently running at port ${PORT}, thanks ^_^`);
 });
 
