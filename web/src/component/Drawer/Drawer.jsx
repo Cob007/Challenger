@@ -10,12 +10,11 @@ import { useEffect, useState } from "react";
 
 const Drawer = (props) => {
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
-
-  const [clicked, setClicked] = useState('HOME')
+  const [clicked, setClicked] = useState("HOME");
   const handeDrawerItemClicked = (value) => {
-    setClicked(value)
+    setClicked(value);
     switch (value) {
       case "HOME":
         navigate("/app");
@@ -35,9 +34,9 @@ const Drawer = (props) => {
   };
 
   const handleLogOut = () => {
-    localStorage.removeItem('authToken')
+    localStorage.removeItem("authToken");
     navigate("/auth");
-  }
+  };
 
   const setActiveDrawer = () => {
     const path = location.pathname;
@@ -57,37 +56,70 @@ const Drawer = (props) => {
       default:
         setClicked("HOME");
     }
+  };
 
-  }
-
-  useEffect(()=> {
-    setActiveDrawer()
-  }, [location.pathname])
-
-  console.log(location.pathname)
-
-  
-
+  useEffect(() => {
+    setActiveDrawer();
+  }, [location.pathname]);
 
   return (
     <section className="drawer">
-      <article onClick={()=>{handeDrawerItemClicked('HOME')}} className="drawer__cont-logo">
+      <article
+        onClick={() => {
+          handeDrawerItemClicked("HOME");
+        }}
+        className="drawer__cont-logo"
+      >
         <img className="drawer__logo" src={Logo} alt="App logo" />
       </article>
 
-      <div onClick={()=>{handeDrawerItemClicked('HOME')}} className={`drawer__ele-c ${clicked==='HOME'?'drawer__ele-selected':'drawer__ele-unselected'}`}>
+      <div
+        onClick={() => {
+          handeDrawerItemClicked("HOME");
+        }}
+        className={`drawer__ele-c ${
+          clicked === "HOME" ? "drawer__ele-selected" : "drawer__ele-unselected"
+        }`}
+      >
         <img className="drawer__icon" src={HomeIcon} alt="Home Icon" />
         <p className="drawer__name">Home</p>
       </div>
-      <div onClick={()=>{handeDrawerItemClicked('REWARD')}} className={`drawer__ele-c ${clicked==='REWARD'?'drawer__ele-selected':'drawer__ele-unselected'}`}>
+      <div
+        onClick={() => {
+          handeDrawerItemClicked("REWARD");
+        }}
+        className={`drawer__ele-c ${
+          clicked === "REWARD"
+            ? "drawer__ele-selected"
+            : "drawer__ele-unselected"
+        }`}
+      >
         <img className="drawer__icon" src={RewardIcon} alt="reward Icon" />
         <p className="drawer__name">Reward</p>
       </div>
-      <div onClick={()=>{handeDrawerItemClicked('PROFILE')}} className={`drawer__ele-c ${clicked==='PROFILE'?'drawer__ele-selected':'drawer__ele-unselected'}`}> 
+      <div
+        onClick={() => {
+          handeDrawerItemClicked("PROFILE");
+        }}
+        className={`drawer__ele-c ${
+          clicked === "PROFILE"
+            ? "drawer__ele-selected"
+            : "drawer__ele-unselected"
+        }`}
+      >
         <img className="drawer__icon" src={ProfileIcon} alt="Profile Icon" />
         <p className="drawer__name">Profile</p>
       </div>
-      <div onClick={()=>{handeDrawerItemClicked('SETTINGS')}} className={`drawer__ele-c ${clicked==='SETTINGS'?'drawer__ele-selected':'drawer__ele-unselected'}`}>
+      <div
+        onClick={() => {
+          handeDrawerItemClicked("SETTINGS");
+        }}
+        className={`drawer__ele-c ${
+          clicked === "SETTINGS"
+            ? "drawer__ele-selected"
+            : "drawer__ele-unselected"
+        }`}
+      >
         <img className="drawer__icon" src={SettingIcon} alt="setting Icon" />
         <p className="drawer__name">Setting</p>
       </div>

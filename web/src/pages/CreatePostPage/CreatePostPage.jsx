@@ -19,7 +19,6 @@ const CreatePost = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(apiRes.data.data);
       setChallengeData(apiRes.data.data);
     } catch (error) {
       console.log(error);

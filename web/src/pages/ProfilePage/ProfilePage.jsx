@@ -4,7 +4,6 @@ import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
 import axios from "axios";
 import ProfilePic from "../../assets/images/avatar.png";
 
-
 const Profile = () => {
   const [data, setData] = useState({});
 
@@ -18,7 +17,6 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(apiRes.data.data[0]);
       setData(apiRes.data.data[0]);
     } catch (error) {
       console.log(error);
@@ -40,18 +38,14 @@ const Profile = () => {
       <div className="profile__divider" />
       <section className="profile__body">
         <div className="profile__pp-div">
-          <img
-            className="profile__pp"
-            src={ProfilePic}
-            alt="Profile picture"
-          />
+          <img className="profile__pp" src={ProfilePic} alt="Profile picture" />
         </div>
         <p>Fullname</p>
-        <h3>{data?.firstname} {data?.lastname}</h3>
+        <h3>
+          {data?.firstname} {data?.lastname}
+        </h3>
         <p>Email</p>
         <h3>{data?.email}</h3>
-
-        
       </section>
     </main>
   );

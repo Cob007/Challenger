@@ -18,7 +18,7 @@ const Rewards = () => {
       });
       setData(resApi.data.data);
     } catch (error) {
-      console.log();
+      console.log(error);
     }
   };
 
