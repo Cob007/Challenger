@@ -50,7 +50,8 @@ const RegisterCard = (props) => {
   };
 
   const handleBtnClicked = async () => {
-    const { firstname, lastname, username, email, password, cpassword } =
+    try {
+      const { firstname, lastname, username, email, password, cpassword } =
       registerData;
     if (
       !!firstname &&
@@ -78,6 +79,9 @@ const RegisterCard = (props) => {
       }
     } else {
       alert("Please provide credentials");
+    }
+    } catch (error) {
+      
     }
   };
 
