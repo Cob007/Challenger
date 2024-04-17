@@ -40,7 +40,6 @@ exports.up = function (knex) {
       table.string("title").notNullable();
       table.string("posturl").notNullable();
       table.integer("likes").notNullable().defaultTo(0);
-      table.specificType('likeBy', 'INT[]')
       table
         .integer("challenge_id")
         .unsigned()
@@ -65,5 +64,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("user").dropTable("challenge").dropTable("post").dropTable("user");
+  return knex.schema.dropTable("post").dropTable("challenge").dropTable("user");
 };

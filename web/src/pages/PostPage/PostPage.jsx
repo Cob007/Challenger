@@ -6,6 +6,7 @@ import FloatingActionButton from "../../component/FloatingActionButton/FloatingA
 import { useEffect, useState } from "react";
 import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
 import axios from "axios";
+import Empty from "../../component/Empty/Empty";
 
 const PostPage = () => {
   const { challengeId } = useParams();
@@ -44,13 +45,18 @@ const PostPage = () => {
     }
   }, []);
 
+  //if (data.length === 0) return <Empty text={`Post`} />;
+
   return (
     <main className="postpage">
       <section className="postpage__view">
-        <SearchBar placeholderText={`Find Post`} />
-        <PostList handleLikes={submitLikes} data={data} />
+      <SearchBar placeholderText={`Find Post`} />
+        {data.length === 0 ? (
+          <Empty text={`post`}/>
+        ) : (
+            <PostList handleLikes={submitLikes} data={data} />     
+        )}
       </section>
-
       <section className="postpage__fab">
         <FloatingActionButton routes={`/app/${challengeId}/p/add`} />
       </section>

@@ -47,10 +47,14 @@
         }
     }
     &__preview {
+        display: flex;
         width: 50%;
         box-sizing: border-box;
         margin: 24px;
+        justify-content: center;
     }
-    
+    &__logo {
+        width: 60%;
+    }
 }
 
