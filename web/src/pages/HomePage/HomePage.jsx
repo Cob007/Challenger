@@ -6,6 +6,7 @@ import "./HomePage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
+import Empty from "../../component/Empty/Empty";
 const HomePage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -37,10 +38,14 @@ const HomePage = () => {
     <main className="homepage">
       <section className="homepage__view">
         <Searchbar placeholderText={`Find Challenges by title`} />
-        <ChallengeList
-          data={data}
-          handleChallengeClicked={_handleChallengeClicked}
-        />
+        {data.length === 0 ? (
+          <Empty text={`challenge`} />
+        ) : (
+          <ChallengeList
+            data={data}
+            handleChallengeClicked={_handleChallengeClicked}
+          />
+        )}
       </section>
 
       <section className="homepage__fab">
