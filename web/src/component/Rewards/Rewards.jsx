@@ -39,7 +39,7 @@ const Rewards = () => {
           ))}
         </section>
         <section className="reward__preview">
-          <img src={RewardLogo} alt="Reward Logo" />
+          <img className="reward__logo"  src={RewardLogo} alt="Reward Logo" />
         </section>
       </div>
     </main>

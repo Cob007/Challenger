@@ -66,10 +66,21 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     const userRes = await knex.from("user").where({ email }).first();
+    if(!userRes){
+      res
+          .status(200)
+          .json(SuccessResponse(400, [], "Account Not Found"));
+      return 
+    }
     const hash = userRes.password;
-
     bcrypt.compare(password, hash, (err, result) => {
-      if (err) throw err;
+      if (err) {
+        console.log(err)
+        return
+      }
+
+  
+    
       if (result) {
         // Passwords match
         const token = jwt.sign({ email }, process.env.SECRET_KEY);
@@ -86,7 +97,7 @@ const login = async (req, res) => {
           .status(200)
           .json(SuccessResponse(200, dataRes, "Fetched Successfully"));
       } else {
-        res.status(404).json(ErrorResponse(404, "Password dont match!"));
+        res.status(200).json(ErrorResponse(400, "Password dont match!"));
       }
     });
   } catch (error) {

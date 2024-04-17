@@ -2,7 +2,11 @@ import { useState } from "react";
 import Button from "../Button/Button";
 
 import "./RegisterCard.scss";
+import { BASE_URL, STAGING_PATH } from "../../constant/Constant";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const RegisterCard = (props) => {
+  const navigate = useNavigate()
   const [registerData, setRegisterData] = useState({
     firstname: "",
     lastname: "",
@@ -62,7 +66,9 @@ const RegisterCard = (props) => {
       !!cpassword
     ) {
       if (password === cpassword) {
+        
         const url = `${BASE_URL}${STAGING_PATH}/user/register`;
+        console.log(url)
         const resRegister = await axios.post(url, {
           firstname: firstname,
           lastname: lastname,
@@ -70,9 +76,13 @@ const RegisterCard = (props) => {
           username: username,
           password: password,
         });
-        if (resRegister.data.status === 201) {
-          localStorage.setItem("authToken", resRegister.data.token);
-          navigate("/app");
+        console.log(resRegister)
+
+        if (resRegister.data.status == 201) {
+          console.log(resRegister.data.status)
+
+          localStorage.setItem("authToken", resRegister.data.data.token);
+          navigate("/app/");
         }
       } else {
         alert("Password doesn't match");
