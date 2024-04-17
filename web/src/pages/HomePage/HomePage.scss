@@ -12,9 +12,12 @@
   &__view {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 90%;
     overflow: hidden;
     align-items: center;
+    @include tablet {
+        width: 60%;
+    }
   }
 
   &__fab {
