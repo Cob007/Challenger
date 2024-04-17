@@ -10,14 +10,13 @@ const Profile = () => {
   const getUserProfile = async () => {
     try {
       const token = localStorage.getItem("authToken");
-
       const url = `${BASE_URL}${STAGING_PATH}/user`;
       const apiRes = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setData(apiRes.data.data[0]);
+      setData(apiRes.data.data);
     } catch (error) {
       console.log(error);
     }
