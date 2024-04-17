@@ -7,10 +7,19 @@
   flex-direction: column;
   box-sizing: border-box;
   height: 100vh;
-  padding: 24px;
   background-color: white;
   border-radius: 0 4px 4px 0;
   position: relative;
+  padding: 8px;
+
+  @include tablet {
+    padding: 16px;
+  }
+
+  @include desktop {
+    padding: 24px;
+  }
+  
 
   &__cont-logo {
     margin: 48px 0;
@@ -26,12 +35,12 @@
   }
 
   &__ele-c {
-    width: 100%;
     display: flex;
     flex-direction: row;
     background-color: #94020019;
     border-radius: 24px;
     align-items: center;
+    justify-content: center;
     margin: 12px 0;
     @include btn;
 
@@ -41,6 +50,7 @@
 
     @include tablet {
       justify-content: center;
+      border-radius: 24px;
     }
   }
 
@@ -53,12 +63,19 @@
   }
 
   &__icon {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     padding: 4px;
+
+    @include tablet {
+      width: 35px;
+    height: 35px;
+    }
 
     @include desktop {
       margin: 0 8px;
+      width: 40px;
+      height: 40px;
     }
   }
 
@@ -70,6 +87,7 @@
     background-color: hsla(1, 100%, 29%);
     border-radius: 24px;
     align-items: center;
+    justify-content: center;
     margin: 14px 0;
     bottom: 0;
     left: 25%;
