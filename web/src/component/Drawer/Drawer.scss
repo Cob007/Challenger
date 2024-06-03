@@ -19,7 +19,7 @@
   @include desktop {
     padding: 24px;
   }
-  
+
 
   &__cont-logo {
     margin: 48px 0;
@@ -35,6 +35,7 @@
   }
 
   &__ele-c {
+    width: 100%;
     display: flex;
     flex-direction: row;
     background-color: #94020019;
@@ -76,8 +77,8 @@
       margin: 0 8px;
       width: 40px;
       height: 40px;
-    }
   }
+}
 
   &__logout {
     width: 5vh;
@@ -141,5 +142,6 @@
         color: white;
       }
     }
+  
   }
 }
